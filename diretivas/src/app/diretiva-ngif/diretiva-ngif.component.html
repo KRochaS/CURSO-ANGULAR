@@ -24,3 +24,16 @@
 </div>
 
 <button (click)="onMostrarCursos()"> Esconder ou mostrar cursos</button>
+
+<h5> Hidden como alternativa </h5>
+
+<div [hidden]="!mostrarCursos" >
+
+  {{cursos}}
+</div>
+
+<div *ngIf="!mostrarCursos" >
+
+  não há cursos
+</div>
+
