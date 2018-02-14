@@ -9,3 +9,21 @@
 <p HighlightMouse>
   Texto com highlight quando passo o mouse
 </p>
+
+<div *ngIf="mostrarCursos" >
+
+  {{cursos}}
+</div>
+
+<div *ngElse="mostrarCursos" >
+
+  não há cursos
+</div>
+
+<button (click)="onMostrarCursos()"> Esconder ou mostrar cursos</button>
+
+<!-- <template [ngElse]="mostrarCursos">
+  <div>
+    Não existem cursos para serem listados
+  </div>
+</template> -->
