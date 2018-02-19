@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 // import { CursoNaoEncontradoComponent } from './cursos/curso-nao-encontrado/curso-nao-encontrado.component';
 import { AppRoutingModule } from './app.routing.module';
 import { CursosModule } from './cursos/cursos.module';
+import { AlunosModule } from './alunos/alunos.module';
+// import { AlunosComponent } from './alunos/alunos.component';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { CursosModule } from './cursos/cursos.module';
     AppComponent,
     HomeComponent,
     LoginComponent,
+    // AlunosComponent,
     // CursosComponent,
     // CursoDetalheComponent,
     // CursoNaoEncontradoComponent
@@ -29,6 +32,7 @@ import { CursosModule } from './cursos/cursos.module';
     BrowserModule,
     FormsModule,
     CursosModule,
+    AlunosModule,
     AppRoutingModule
  // routing
   ],
