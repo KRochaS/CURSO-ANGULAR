@@ -6,7 +6,7 @@ import { AlunosFormComponent } from './alunos-form/alunos-form.component';
 
 const alunosRoutes = [
     // tudo que é hardCode é avaliado primeiro, o :id é um valor dinamico 
-    {path: 'alunos', component: AlunosComponent, children: [
+    {path: '', component: AlunosComponent, children: [
         {path: 'novo', component:AlunosFormComponent },
         {path: ':id', component:AlunosDetalheComponent },
         {path: ':id/editar', component:AlunosFormComponent },
