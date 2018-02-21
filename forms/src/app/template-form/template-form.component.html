@@ -1,13 +1,25 @@
-<form>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" >
   <div class="form-group">
-    <label for="nome">Nome</label>
-    <input type="text" class="form-control" id="nome" placeholder="Nome">
+    <label for="nome" >Nome</label>
+    <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" [(ngModel)]="usuario.nome" required #nome="ngModel">
   </div>
+  <p *ngIf="!nome.valid && nome.touched" >
+    Nome é obrigatório
+
+  </p>
+  
 
   <div class="form-group">
       <label for="email">Email</label>
-      <input type="text" class="form-control" id="email" placeholder="nome@email.com">
+      <input type="text"  name="email" class="form-control" id="email" placeholder="nome@email.com" [(ngModel)]="usuario.email" 
+      required email #email="ngModel" >
+      <!-- pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" -->
     </div>
+      <p *ngIf="!email.valid && email.touched" >
+        E-mail é obrigatório
+    
+      </p>
+      
 
     <button type="submit" class="btn btn-primary"> Submit </button>
 </form>
