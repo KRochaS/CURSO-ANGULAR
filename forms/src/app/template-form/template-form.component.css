@@ -6,8 +6,18 @@
     border-bottom: 2px solid blue;
 }
 
-p {
+app-campo-control-erro {
     font-size: .8rem;
     color: #9e9e9e;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+button {
+    border: none;
+}
+
+
+
+.input-inline {
+    height: 15px;
 }
