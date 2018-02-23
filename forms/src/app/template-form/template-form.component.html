@@ -23,65 +23,66 @@
 	  
 	  <br>
 
-	<div class="col s12">
-		<div class="row">
-			<div class="col-md-3">
-				<label for="cep" class="control-label">CEP</label>
-				<input type="text" class="input-inline" id="cep" name="cep" ngModel required #cep="ngModel">
-				<p *ngIf="!cep.valid && cep.touched" >
-					CEP é obrigatório
-				</p>
-			</div>
+	<div ngModelGroup="endereço">
 
-			<div class="col-md-3">
-				<label for="numero" class="control-label">Número</label>
-				<input type="text" class="input-inline" id="numero" name="numero" ngModel required #numero="ngModel">
-					<p *ngIf="!numero.valid && numero.touched" >
-						Número é obrigatório
-					</p>
-			</div>
+		 <div class="form-group"> 
+			<div class="col s12">
+				<div class="row">
+					<div class="col-md-3">
+						<label for="cep" class="control-label">CEP</label>
+						<input type="text" class="input-inline" id="cep" name="cep" ngModel required #cep="ngModel" (blur)="consultaCEP($event.target.value, f)" >  <!-- $event.target.value pega o valor do input -->
+						<p *ngIf="!cep.valid && cep.touched">
+							CEP é obrigatório
+						</p>
+					</div>
 
-			<div class="col-md-6">
-				<label for="numero" class="control-label">Complemento (opcional)</label>
-				<input type="text" class="input-inline" id="complemento">
-			</div>
+					<div class="col-md-3">
+						<label for="numero" class="control-label">Número</label>
+						<input type="text" class="input-inline" id="numero" name="numero" ngModel required #numero="ngModel">
+							<p *ngIf="!numero.valid && numero.touched" >
+								Número é obrigatório
+							</p>
+					</div>
 
-			<div class="col-md-12">
-				<label for="nome" >Rua</label>
-    			<input type="text" name="rua" id="nome" placeholder="Rua" ngModel required #rua="ngModel" readonly>
-					<p *ngIf="!rua.valid && rua.touched">
-					  Rua é obrigatório
-				  </p>
-  			</div>
+					<div class="col-md-6">
+						<label for="numero" class="control-label">Complemento (opcional)</label>
+						<input type="text" class="input-inline" id="complemento" name="complemento" ngModel #complemento="ngModel">
+					</div>
 
-			<div class="col-md-5">
-				<label for="nome" >Bairro</label>
-				<input type="text" name="bairro" id="bairro" placeholder="bairro" ngModel required #bairro="ngModel" readonly>
-				<p *ngIf="!bairro.valid && bairro.touched" >
-					bairro é obrigatório
-				</p>
-			</div>
-			<div class="col-md-4">
-				<label for="nome" >Cidade</label>
-				<input type="text" name="cidade" id="cidade" placeholder="cidade" ngModel required #cidade="ngModel" readonly>
-				<p *ngIf="!cidade.valid && cidade.touched" >
-					Cidade é obrigatório
-				</p>
-			</div>
-			<div class="col-md-3">
-				<label for="nome" >Estado</label>
-				<input type="text" name="estado" id="estado" placeholder="estado" ngModel required #estado="ngModel" readonly>
-				<p *ngIf="!estado.valid && estado.touched" >
-					Estado é obrigatório
-				</p>
+					<div class="col-md-12">
+						<label for="nome" >Rua</label>
+						<input type="text" name="rua" id="nome" placeholder="Rua" ngModel required #rua="ngModel">
+							<p *ngIf="!rua.valid && rua.touched">
+							Rua é obrigatório
+						</p>
+					</div>
+
+					<div class="col-md-5">
+						<label for="nome" >Bairro</label>
+						<input type="text" name="bairro" id="bairro" placeholder="bairro" ngModel required #bairro="ngModel">
+						<p *ngIf="!bairro.valid && bairro.touched" >
+							bairro é obrigatório
+						</p>
+					</div>
+					<div class="col-md-4">
+						<label for="nome" >Cidade</label>
+						<input type="text" name="cidade" id="cidade" placeholder="cidade" ngModel required #cidade="ngModel">
+						<p *ngIf="!cidade.valid && cidade.touched" >
+							Cidade é obrigatório
+						</p>
+					</div>
+					<div class="col-md-3">
+						<label for="nome" >Estado</label>
+						<input type="text" name="estado" id="estado" placeholder="estado" ngModel required #estado="ngModel" readonly>
+						<p *ngIf="!estado.valid && estado.touched" >
+							Estado é obrigatório
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
-
 
     <button type="submit" class="btn btn-primary"
     [disabled]="!f.valid"> Submit </button>
