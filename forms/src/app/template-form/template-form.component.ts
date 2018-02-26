@@ -92,7 +92,7 @@ consultaCEP(cep, form) {
 				cidade: null,
 				estado: null
 			} 
-		})
+		});
 
 	}
 }
