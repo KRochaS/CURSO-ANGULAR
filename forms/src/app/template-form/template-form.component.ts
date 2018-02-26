@@ -1,3 +1,4 @@
+import { ConsultaCepService } from './../shared/services/consulta-cep.service';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -10,89 +11,84 @@ import 'rxjs/add/operator/map';
 export class TemplateFormComponent implements OnInit {
 
   usuario: any = {
-    nome: '',
-    email: ''
-  }
-  onSubmit(form) {
-    console.log(form);
-	// console.log(this.usuario);
-	
-
-	//Submetendo valores com HTTP POST
-	// site do https https://resttesttest.com/
-	this.http.post('https://httpbin.org/post', JSON.stringify(form.value)) // Transformando informações em json em formato string
-	.map(resp => resp)
-	.subscribe(dados => console.log(dados));
+    nome: null,
+    email: null
   }
 
-  constructor(private http: Http) { }
+  onSubmit(formulario){
+    console.log(formulario);
+
+    //form.value
+    //console.log(this.usuario);
+
+    this.http.post('https://httpbin.org/post', JSON.stringify(formulario.value))
+      .map(res => res)
+      .subscribe(dados => {
+        console.log(dados);
+        formulario.form.reset();
+      });
+  }
+
+  constructor(private http: Http, private cepService: ConsultaCepService) { }
 
   ngOnInit() {
   }
 
-verificaValidTouched(campo) {
-  return !campo.valid && campo.touched;
-}
+  verificaValidTouched(campo){
+    return !campo.valid && campo.touched;
+  }
 
-consultaCEP(cep, form) {
-  //Nova variável "cep" somente com dígitos.
-  cep = cep.replace().replace(/\D/g, '');
-  //Verifica se campo cep possui valor informado.
-  if (cep != "") {
-    
-      //Expressão regular para validar o CEP.
-      var validacep = /^[0-9]{8}$/;
-    
-       //Valida o formato do CEP.
-       if(validacep.test(cep)) {
+  aplicaCssErro(campo){
+    return {
+      'has-error': this.verificaValidTouched(campo),
+      'has-feedback': this.verificaValidTouched(campo)
+    }
+  }
 
-		this.resetaDadosForm(form);
+  consultaCEP(cep, form){
+    this.cepService.consultaCEP(cep, this.resetaDadosForm, form)
+      .subscribe(dados => this.populaDadosForm(dados, form));
+  }
 
-          this.http.get(`https://viacep.com.br/ws/${cep}/json/`) // template literal ecmascript 2015 ${}
-			.map(dados => dados.json()) // mapeia  as informações do servidor (os dados) em um json
-			.subscribe(dados => this.populaDadadosForm(dados, form)); // fazendo inscrição para receber os dados
-        }
+  populaDadosForm(dados, formulario){
+    /*formulario.setValue({
+      nome: formulario.value.nome,
+      email: formulario.value.email,
+      endereco: {
+        rua: dados.logradouro,
+        cep: dados.cep,
+        numero: '',
+        complemento: dados.complemento,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
       }
-	}
+    });*/
 
-	populaDadadosForm(dados, formulario) {
-		// formulario.setValue({
-		// 	nome: formulario.value.nome,
-		// 	email: formulario.value.email,
-		// 	endereço: {
-		// 		cep: dados.cep,
-		// 		numero: '',
-		// 		complemento: dados.complemento,
-		// 		rua: dados.logradouro,
-		// 		bairro: dados.bairro,
-		// 		cidade: dados.localidade,
-		// 		estado: dados.uf
-		// 	} 
-		// });
+    formulario.form.patchValue({
+      endereco: {
+        rua: dados.logradouro,
+        //cep: dados.cep,
+        complemento: dados.complemento,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+      }
+    });
 
-		formulario.form.patchValue({
-			endereço: {
-			//	cep: dados.cep,
-				complemento: dados.complemento,
-				rua: dados.logradouro,
-				bairro: dados.bairro,
-				cidade: dados.localidade,
-				estado: dados.uf
-			} 
-		})
-		// console.log(formulario);
-	}
+    //console.log(form);
+  }
 
-	resetaDadosForm(formulario) {
-		formulario.form.patchValue({
-			endereço: {
-				complemento: null,
-				rua: null,
-				bairro: null,
-				cidade: null,
-				estado: null
-			} 
-		});
+  resetaDadosForm(formulario){
+    formulario.form.patchValue({
+      endereco: {
+        rua: null,
+        complemento: null,
+        bairro: null,
+        cidade: null,
+        estado: null
+      }
+    });
+  }
 
-	}
 }

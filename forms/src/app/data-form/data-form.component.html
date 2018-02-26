@@ -1,4 +1,4 @@
-<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()" >
   <div class="form-group" [ngClass]="aplicaCssErro('nome')">
     <div class="col-sm-12">
       <label for="nome" class="control-label">Nome</label>
@@ -35,9 +35,9 @@
     </div>
   </div>
 
-  <div>
+  <div formGroupName="endereco">
 
-  <div class="form-group" formGroupName="endereco">
+  <div class="form-group">
 
     <div class="col-md-3" [ngClass]="aplicaCssErro('endereco.cep')">
       <label for="cep" class="control-label">CEP</label>

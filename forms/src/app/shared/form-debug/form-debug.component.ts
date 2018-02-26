@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-form-debug',
@@ -7,7 +7,7 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class FormDebugComponent implements OnInit {
 
-  @Input() form; // variável form que é um input property (passar do formulário para outro componente )
+  @Input() form;
 
   constructor() { }
 
