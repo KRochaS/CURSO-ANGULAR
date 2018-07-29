@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col s6">
+		<p>
+			Lista de Alunos
+		</p>
+	
+		<div class="collection">
+			<a class="collection-item" *ngFor="let aluno of alunos" [routerLink]="[aluno.id]"> {{aluno.nome}} </a>
+		</div>
+	</div>
+	
+		<!-- Como está usando rotas filhas não precisa /alunos, aluno.id apenas [aluno.id] e também com as rotas filhas
+		ele não redireciona ele vai abrir o componente de detalhes dentro do router-outlet   -->
+	
+	<div class="col s6">
+		<router-outlet></router-outlet> <!-- para que as rotas filhas possam funcionar -->
+	</div>
+</div>
